@@ -1,0 +1,71 @@
+<h1>Formulário Template Driven</h1>
+
+<form #propForm="ngForm" (ngSubmit)="enviar(propForm)">
+    <label for="nome">Nome Completo:</label>
+    <input type="text" id="nome" name="nome" [(ngModel)]="nome" #propNome="ngModel" required minlength="3" pattern="^[a-zA-ZÀ-ÿ ]+$">
+    @if(propNome.invalid && propNome.touched){
+        <br><span class="msg-invalida">Campo obrigatório, mínimo de 3 caracteres, use apenas caracteres alfanuméricos.</span>
+    }
+
+    <h3>Valores e Validações</h3>
+    <p>Valor do Campo: {{ nome }}</p>
+    <p>Campo é valido: {{ propNome.valid }}</p>
+    <p>Campo Visitado: {{ propNome.touched }}</p>
+    <p>Campo Alterado:{{ propNome.dirty }}</p>
+
+    <hr>
+
+    <label for="filmes">Filmes:</label>
+    <select name="filmes" id="filmes" [(ngModel)]="filmes" #propFilmes="ngModel" required>
+      <option value="">Selecione um filme</option>
+      <option value="filme1">Diabo Veste Prada</option>
+      <option value="filme2">Um Lugar Chamado Nothing Hill</option>
+      <option value="filme3">O Conde de Monte Cristo</option>
+      <option value="filme4">Gladiador</option>
+      <option value="filme5">Top Gun</option>
+    </select>
+
+    <h3>Valores e Validações</h3>
+    <p>Valor do campo: {{ filmes }}</p>
+    <p>Campo Válido: {{ propFilmes.valid }}</p>
+    <p>Campo Visitado: {{ propFilmes.touched }}</p>
+    <p>Campo Alterado: {{ propFilmes.dirty }}</p>
+
+    <hr>
+
+    <label for="demaior">Sou de maior:</label>
+    <input type="checkbox" id="demaior" name="demaior" [(ngModel)]="demaior" #propDemaior="ngModel" />
+
+    <h3>Valores e Validações</h3>
+    <p>Valor do campo: {{ demaior }}</p>
+    <p>Campo Válido: {{ propDemaior.valid }}</p>
+    <p>Campo Visitado: {{ propDemaior.touched }}</p>
+    <p>Campo Alterado: {{ propDemaior.dirty }}</p>
+
+    <hr>
+
+    <label>Sexo:</label>
+    <input type="radio" id="sexoM" name="sexo" [(ngModel)]="sexo" #propSexo="ngModel" value="M" />
+    <label for="sexoM">Masculino</label>
+
+    <input type="radio" id="sexoF" name="sexo" [(ngModel)]="sexo" #propSexo="ngModel" value="F" />
+    <label for="sexoF">Feminino</label>
+
+    <input type="radio" id="sexoO" name="sexo" [(ngModel)]="sexo" #propSexo="ngModel" value="O" />
+    <label for="sexoO">Outro</label>
+
+    <h3>Valores e Validações</h3>
+    <p>Valor do campo: {{ sexo }}</p>
+    <p>Campo Válido: {{ propSexo.valid }}</p>
+    <p>Campo Visitado: {{ propSexo.touched }}</p>
+    <p>Campo Alterado: {{ propSexo.dirty }}</p>
+
+    <hr>
+
+    <h3>Validação do Formulário</h3>
+    <p>Formulário Válido: {{ propForm.valid }}</p>
+
+    <hr>
+
+    <button type="submit" [disabled]="propForm.invalid">Enviar</button>
+</form>
